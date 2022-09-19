@@ -1,0 +1,103 @@
+<h4 style='padding-bottom: 5px !important; margin-bottom: 0px;padding-top: 0px !important; margin-top: 0px'>Duration of fund</h4>
+<p style='padding-top: 0px !important; margin-top: 0px;'>Select the number of months you would like your emergency fund to cover - our recommendation is between 6-12 months </p>
+<div class='form-field' style='margin-top: 15px;'>
+	<input type="range" min="3" max="24" id="first-field" value="3" class="range-design" required oninput="rangeInput()"></input>
+	<p id="first-number"></p>
+</div>
+
+<h4 style='padding-bottom: 5px !important; margin-bottom: 0px; margin-top: 20px'>Reach this by</h4>
+<p style='padding-top: 0px !important; margin-top: 0px;'>Select target number of months you want to build this fund by - the shorter the period, the higher the required monthly contribution will be </p>
+<div class='form-field' style='margin-top: 15px;'>
+	<input type="range" id="second-field" required min="3" value="3" max="24" class="range-design" oninput="rangeInput2()">	</input>
+	<p id="second-number"></p>
+</div>
+
+<h4 style='padding-bottom: 5px !important; margin-bottom: 0px; margin-top: 20px'>Essential monthly living expenses</h4>
+<p style='padding-top: 0px !important; margin-top: 0px;'>This is the money you spend on your needs, such as rent, transport, groceries </p>
+<div class='form-field' style='margin-top: 15px;'><input type="number" style="width: 100%"  id="third-field" placeholder="Type Your Amount" pattern="[0-9]+"></div>
+
+<h4 style='padding-bottom: 5px !important; margin-bottom: 0px; margin-top: 20px'>Existing savings <sub style='color: #666'>(Optional)</sub></h4>
+<p style='padding-top: 0px !important; margin-top: 0px;'>If you already have money saved for your emergency fund, enter it here </p>
+<div class='form-field' style='margin-top: 15px;'><input type="number" pattern="[0-9]+" style="width: 100%" id="fourth-field" placeholder="Type Your Amount"></div>
+<br>
+
+<p>Based on this, your proposed emergency fund is <span id="first-amount"></span></p>
+</p>You will need to contribute <span id="second-amount"></span> each month,</p>
+<p>in order to reach it within <span id="months"></span></p>
+
+
+<script>
+	function myfunc() {
+		var first_field = parseInt(document.getElementById('first-field').value);
+		var second_field = parseInt(document.getElementById('second-field').value);
+		var third_field = parseInt(document.getElementById('third-field').value);
+		var fourth_field = document.getElementById('fourth-field').value;
+
+		document.getElementById('months').innerHTML = second_field + " " + "Months";
+
+
+		if(first_field > 0 && second_field > 0 && third_field > 0) {
+			
+			var first_amount = first_field * third_field;
+			var first_amount = first_amount.toFixed();
+			var first_amount = parseInt(first_amount);
+			var first_amount = first_amount.toLocaleString();
+			document.getElementById('first-amount').innerHTML = "$" + "" + first_amount;
+
+			var first_amount = parseInt(first_amount);
+			
+			if(fourth_field == "") {
+			var second_amount = first_field * third_field;
+            var second_amount = second_amount - 0;
+            var second_amount = second_amount / second_field;
+			var second_amount = second_amount.toFixed();
+			var second_amount = parseInt(second_amount);
+			var second_amount = second_amount.toLocaleString();
+			document.getElementById('second-amount').innerHTML = "$" + "" + second_amount;
+		}else {
+			var fourth_field = parseInt(document.getElementById('fourth-field').value);
+			var second_amount = first_field * third_field;
+            var second_amount = second_amount - fourth_field;
+            var second_amount = second_amount / second_field;
+			var second_amount = second_amount.toFixed();
+			var second_amount = parseInt(second_amount);
+			var second_amount = second_amount.toLocaleString();
+			document.getElementById('second-amount').innerHTML = "$" + "" + second_amount;
+		}
+
+
+		}else {
+			// alert("Please Use All Fields");	
+		}
+	}
+	document.getElementById('first-field').addEventListener("input", function() {
+		myfunc();
+	});
+	document.getElementById('second-field').addEventListener("input", function() {
+		myfunc();
+	});
+	document.getElementById('third-field').addEventListener("keyup", function() {
+		myfunc();
+	});
+	document.getElementById('fourth-field').addEventListener("keyup", function() {
+		myfunc();
+	});
+
+	function isInputNumber(evt) {
+		var ch = String.fromCharCode(evt.which);
+		if (!(/[0-9]/.test(ch))) { evt.preventDefault(); }
+	}
+	function isInputNumber2(evt) {
+		var ch = String.fromCharCode(evt.which);
+		if (!(/[0-9]/.test(ch))) { evt.preventDefault(); }
+	}
+
+	function rangeInput() {
+		var rangeInput = parseInt(document.getElementById('first-field').value);
+		document.getElementById("first-number").innerHTML =  "You have selected: "  + rangeInput + " Months";
+	}
+	function rangeInput2() {
+		var rangeInput2 = parseInt(document.getElementById('second-field').value);
+		document.getElementById("second-number").innerHTML =  "You have selected: "  + rangeInput2 + " Months";
+	}
+</script>
