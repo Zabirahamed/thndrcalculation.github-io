@@ -236,20 +236,18 @@
       const ctx = document.getElementById('myChart').getContext('2d');
 
       const myChart = new Chart(ctx, {
-           type: 'doughnut',
+           type: 'pie',
             data: {
-                labels: ['Monthly Income', 'Needs', 'Saving & Investments', 'Wants'],
+                labels: ['Needs', 'Saving & Investments', 'Wants'],
                 datasets: [{
                     label: '# of Votes',
-                    data: [0, 0,0,0],
+                    data: [0,0,0],
                     backgroundColor: [
-                        '#4684F3',
                         '#F23053',
                         '#38C09C',
                         '#FF7840'
                     ],
                     borderColor: [
-                        '#4684F3',
                         '#F23053',
                         '#38C09C',
                         '#FF7840'
@@ -268,24 +266,46 @@
 
         function montlyIncomeByField(){
 
-          var TotalEarningMontlyField = parseInt(salleryRange.val()) + parseInt(otherIncomeInput.val());
 
-           var totalNeeds = parseInt(thirdField.val()) + parseInt(fourField.val()) + parseInt(fiveField.val()) + parseInt(sixField.val()) + parseInt(sevenField.val()) + parseInt(eightField.val());
+          var totalNeeds = parseInt(thirdField.val()) + parseInt(fourField.val()) + parseInt(fiveField.val()) + parseInt(sixField.val()) + parseInt(sevenField.val()) + parseInt(eightField.val());
 
           var savingANDINVESTMENT = parseInt(nineField.val()) + parseInt(tenField.val());
 
           var wantsField = parseInt(elevenField.val()) + parseInt(twelveField.val()) + parseInt(thirteenField.val()) + parseInt(fourteenField.val());
 
-          var inputUpdateData = [TotalEarningMontlyField,totalNeeds,savingANDINVESTMENT,wantsField];
+          var totalEXPENSES = totalNeeds + savingANDINVESTMENT + wantsField;
+
+          var totalNeeds2 = 0;
+          var wantsField2 = 0;
+          var savingANDINVESTMENT2 = 0;
+
+          if(totalNeeds == 0) {
+             totalNeeds2 = 0;
+          }else {
+            totalNeeds2 = (totalNeeds / totalEXPENSES) * 100;
+          }
+
+          if(wantsField == 0) {
+             wantsField2 = 0;
+          }else {
+             wantsField2 = (wantsField / totalEXPENSES) * 100;
+          }
+
+          if(savingANDINVESTMENT == 0) {
+             savingANDINVESTMENT2 = 0;
+          }else {
+             savingANDINVESTMENT2 = (savingANDINVESTMENT / totalEXPENSES) * 100;
+          }
+
+
+          var inputUpdateData = [totalNeeds2,savingANDINVESTMENT2,wantsField2];
           myChart.data.datasets[0].data = inputUpdateData;
-           myChart.update();
+          myChart.update();
         }
 
         // FOR RANGE FIRST FIELD
 
         function montlyIncomeByRange(){
-
-          var TotalEarningMontlyRange = parseInt(salleryRange.val()) + parseInt(otherIncome.val());
 
            var totalNeeds = parseInt(thirdRange.val()) + parseInt(fourRange.val()) + parseInt(fiveRange.val()) + parseInt(sixRange.val()) + parseInt(sevenRange.val()) + parseInt(eightRange.val());
 
@@ -293,7 +313,31 @@
 
           var wantsRange = parseInt(elevenRange.val()) + parseInt(twelveRange.val()) + parseInt(thirteenRange.val()) + parseInt(fourteenRange.val());
 
-           var updateDataaValue = [TotalEarningMontlyRange,totalNeeds,savingANDINVESTMENT,wantsRange];
+          var totalEXPENSES = totalNeeds + savingANDINVESTMENT + wantsRange;
+
+          var totalNeeds2 = 0;
+          var wantsRange2 = 0;
+          var savingANDINVESTMENT2 = 0;
+
+          if(totalNeeds == 0) {
+             totalNeeds2 = 0;
+          }else {
+            totalNeeds2 = (totalNeeds / totalEXPENSES) * 100;
+          }
+
+          if(wantsRange == 0) {
+             wantsRange2 = 0;
+          }else {
+             wantsRange2 = (wantsRange / totalEXPENSES) * 100;
+          }
+
+          if(savingANDINVESTMENT == 0) {
+             savingANDINVESTMENT2 = 0;
+          }else {
+             savingANDINVESTMENT2 = (savingANDINVESTMENT / totalEXPENSES) * 100;
+          }
+
+           var updateDataaValue = [totalNeeds2,savingANDINVESTMENT2,wantsRange2];
             myChart.data.datasets[0].data = updateDataaValue;
             myChart.update();
         }
