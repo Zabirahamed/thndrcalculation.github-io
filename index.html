@@ -1,83 +1,586 @@
-<h4 style='padding-bottom: 5px !important; margin-bottom: 0px;padding-top: 0px !important; margin-top: 0px'>Duration of fund</h4>
-<p style='padding-top: 0px !important; margin-top: 0px;'>Select the number of months you would like your emergency fund to cover - our recommendation is between 6-12 months </p>
-<div class='form-field' style='margin-top: 15px;'>
-  <input type="range" min="3" max="24" value="0" id="first-field"  class="range-design" required oninput="makeChanges()"></input>
-  <p id="first-number">You have selected: 3 Months</p>
+
+    <div class="chart-bx">
+        <canvas id="myChart"></canvas>
+      </div>
+
+
+
+<!-- FIRST FIELD -->
+<div class="total-calc">
+<div class="tab-box">
+    <div id="flip" class="flip"><span class="font-weight-bold"> <span style="background: #4684F3;border-radius: 999px; width: 10px; height: 10px; display: inline-block; transform: scale(1.3)"></span> Monthly Income</span></span> <span class="float-right"><i style="color: #007bff" class="fas fa-chevron-right"></i></span></div>
+    <div id="panel" style="background: #DAE6FE" class="panel">
+      <div class="mb-2">
+        <h6>Salery</h6>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number"  id="first-field" oninput="firstFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white"  placeholder="" >
+          </div>
+            <div class="mt-3"> <input type="range" oninput="firstFieldmonthlyCalcByRange()" min="0" max="12500" id="first-range" class="range-design range-design2" value="0"> </div>
+      </div>
+      <div class="mb-2">
+          <h6>Other Income</h6>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number" id="second-field" oninput="firstFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white" placeholder="">
+          </div>
+            <div class="mt-3"> <input type="range" oninput="firstFieldmonthlyCalcByRange()" min="0" max="12500" id="second-range" class="range-design range-design2" value="0" > </div>
+        </div>
+    </div>
+</div>
 </div>
 
-<h4 style='padding-bottom: 5px !important; margin-bottom: 0px; margin-top: 20px'>Reach this by</h4>
-<p style='padding-top: 0px !important; margin-top: 0px;'>Select target number of months you want to build this fund by - the shorter the period, the higher the required monthly contribution will be </p>
-<div class='form-field' style='margin-top: 15px;'>
-  <input type="range" id="second-field" value="0" required min="3" max="24" class="range-design" oninput="makeChanges()"> </input>
-  <p id="second-number">You have selected: 3 Months</p>
+<!-- SECOND FIELD -->
+<div class="total-calc">
+<div class="tab-box">
+    <div id="flip1" class="flip"><span class="font-weight-bold"> <span class="font-weight-bold"> <span style="background: #F23053;border-radius: 999px; width: 10px; height: 10px; display: inline-block; transform: scale(1.3)"></span> Needs</span></span> <span class="float-right"><i class="fas fa-chevron-right" style="color: #ff182e"></i></span></div>
+    <div id="panel1" style="background: #FBD6DD" class="panel">
+      <div class="mb-2">
+        <h5>Housing expenses</h5>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number" id="third-field" oninput="secondFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white" placeholder="">
+          </div>
+          <div class="mt-3"> <input type="range"  oninput="secondFieldmonthlyCalcByRange()" id="third-range" class="range-design range-design2" value="0" name=""> </div>
+    </div>
+    <div class="mb-2">
+        <h5>Groceries</h5>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number" id="four-field" oninput="secondFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white" placeholder="">
+          </div>
+          <div class="mt-3"> <input type="range" oninput="secondFieldmonthlyCalcByRange()" id="four-range" class="range-design range-design2" value="0" name=""> </div>
+    </div>
+    <div class="mb-2">
+        <h5>Utilities</h5>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number" id="five-field" oninput="secondFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white" placeholder="">
+          </div>
+          <div class="mt-3"> <input type="range" oninput="secondFieldmonthlyCalcByRange()" id="five-range" class="range-design range-design2" value="0" name=""> </div>
+    </div>
+    <div class="mb-2">
+        <h5>Transportation</h5>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number" id="six-field" oninput="secondFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white" placeholder="">
+          </div>
+          <div class="mt-3"> <input type="range" oninput="secondFieldmonthlyCalcByRange()" id="six-range" class="range-design range-design2" value="0" name=""> </div>
+    </div>
+    <div class="mb-2">
+        <h5>Phone & Internet</h5>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number" id="seven-field" oninput="secondFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white" placeholder="">
+          </div>
+          <div class="mt-3"> <input type="range" oninput="secondFieldmonthlyCalcByRange()" id="seven-range" class="range-design range-design2" value="0" name=""> </div>
+    </div>
+    <div class="mb-2">
+        <h5>Other essential expense</h5>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number" id="eight-field" oninput="secondFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white" placeholder="">
+          </div>
+          <div class="mt-3"> <input type="range" oninput="secondFieldmonthlyCalcByRange()" id="eight-range" class="range-design range-design2" value="0" name=""> </div>
+    </div>
+  </div>
+</div>
 </div>
 
-<h4 style='padding-bottom: 5px !important; margin-bottom: 0px; margin-top: 20px'>Essential monthly living expenses</h4>
-<p style='padding-top: 0px !important; margin-top: 0px;'>This is the money you spend on your needs, such as rent, transport, groceries </p>
-<div class='form-field' style='margin-top: 15px;'><input type="number" style="width: 100%"  id="third-field" placeholder="Type Your Amount" pattern="[0-9]+" oninput="makeChanges()" value="0"></div>
+<!-- THIRD FIELD -->
+<div class="total-calc">
+<div class="tab-box">
+    <div id="flip2" class="flip"><span class="font-weight-bold"> <span class="font-weight-bold"> <span style="background: #38C09C;border-radius: 999px; width: 10px; height: 10px; display: inline-block; transform: scale(1.3)"></span> Savings & Investments</span></span> <span class="float-right"><i class="fas fa-chevron-right" style="color: #32d302"></i></span></div>
+    <div id="panel2" style="background: #D7F2EB" class="panel">
+      <div class="mb-2">
+        <h6>Savings</h6>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number" id="nine-field" oninput="thirdFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white" placeholder="">
+          </div>
+          <div class="mt-3"> <input type="range" oninput="thirdFieldmonthlyCalcByRange()" id="nine-range" class="range-design range-design2" value="0" name=""> </div>
+      </div>
+      <div class="mb-2">
+          <h6>Investments</h6>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number" id="ten-field" oninput="thirdFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white" placeholder="">
+          </div>
+          <div class="mt-3"> <input type="range" oninput="thirdFieldmonthlyCalcByRange()" id="ten-range" class="range-design range-design2" value="0" name=""> </div>
+        </div>
+    </div>
+</div>
+</div>
 
-<h4 style='padding-bottom: 5px !important; margin-bottom: 0px; margin-top: 20px'>Existing savings <sub style='color: #666'>(Optional)</sub></h4>
-<p style='padding-top: 0px !important; margin-top: 0px;'>If you already have money saved for your emergency fund, enter it here </p>
-<div class='form-field' style='margin-top: 15px;'><input type="number" pattern="[0-9]+" style="width: 100%" id="fourth-field" placeholder="Type Your Amount" value="0" oninput="makeChanges()"></div>
-<br>
+<!-- FOURTH FIELD -->
+<div class="total-calc">
+<div class="tab-box">
+    <div id="flip3" class="flip"><span class="font-weight-bold"> <span class="font-weight-bold"> <span style="background: #FF7840;border-radius: 999px; width: 10px; height: 10px; display: inline-block; transform: scale(1.3)"></span> Wants</span></span> <span class="float-right"><i class="fas fa-chevron-right" style="color: #ff7b00"></i></span></div>
+    <div id="panel3" style="background: #FFE4D9" class="panel">
+      <div class="mb-2">
+        <h6>Eating out</h6>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number" id="eleven-field" oninput="fourthFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white" placeholder="">
+          </div>
+          <div class="mt-3"> <input type="range" id="eleven-range" oninput="fourthFieldmonthlyCalcByRange()" class="range-design range-design2" value="0" name=""> </div>
+      </div>
+      <div class="mb-2">
+          <h6>Shopping</h6>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number" id="twelve-field" oninput="fourthFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white" placeholder="">
+          </div>
+          <div class="mt-3"> <input type="range" id="twelve-range" oninput="fourthFieldmonthlyCalcByRange()" class="range-design range-design2" value="0" name=""> </div>
+        </div>
+        <div class="mb-2">
+          <h6>Sports</h6>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number" id="thirteen-field" oninput="fourthFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white" placeholder="">
+          </div>
+          <div class="mt-3"> <input type="range" oninput="fourthFieldmonthlyCalcByRange()" id="thirteen-range" class="range-design range-design2" value="0" name=""> </div>
+        </div>
+        <div class="mb-2">
+          <h6>Gifts</h6>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text bg-white" id="addon-wrapping">$</span>
+            </div>
+            <input type="number" id="fourteen-field" oninput="fourthFieldmonthlyCalcByField()" value="0" class="d-block w-100 rounded-0 bg-white" placeholder="">
+          </div>
+          <div class="mt-3"> <input type="range" oninput="fourthFieldmonthlyCalcByRange()" id="fourteen-range" class="range-design range-design2" value="0" name=""> </div>
+        </div>
+    </div>
+</div>
+</div>
 
-<p>Based on this, your proposed emergency fund is <span id="first-amount">$0</span></p>
-</p>You will need to contribute <span id="second-amount">$0</span> each month,</p>
-<p>in order to reach it within <span id="months">3 Months</span></p>
+<!-- NO NEEDED  -->
 
+<p>Total: <span id="total-income">$0</span> </p>
+<p>Needs: <span id="total-needs">$0</span> </p>
+<p>Saving & Investment: <span id="total-saving">$0</span> </p>
+<p>Wants: <span id="total-wants">$0</span> </p>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
 
 <script>
 
-  function makeChanges() {
-    var first_field = parseInt(document.getElementById('first-field').value);
-    var second_field = parseInt(document.getElementById('second-field').value);
-    var third_field = parseInt(document.getElementById('third-field').value);
+      // Income 
+      let salleryRange = $('#first-range');
+      let otherIncome  =  $('#second-range'); 
+      let salleryInput = $('#first-field');
+      let otherIncomeInput= $('#second-field');
 
-    var rangeInput = parseInt(document.getElementById('first-field').value);
-    document.getElementById("first-number").innerHTML =  "You have selected: "  + rangeInput + " Months";
+      // Need
+      let thirdField = $("#third-field");
+      let fourField = $("#four-field");
+      let fiveField = $("#five-field");
+      let sixField = $("#six-field");
+      let sevenField = $("#seven-field");
+      let eightField = $("#eight-field");
 
-    var rangeInput2 = parseInt(document.getElementById('second-field').value);
-    document.getElementById("second-number").innerHTML =  "You have selected: "  + rangeInput2 + " Months";
+      let thirdRange = $("#third-range");
+      let fourRange = $("#four-range");
+      let fiveRange = $("#five-range");
+      let sixRange = $("#six-range");
+      let sevenRange = $("#seven-range");
+      let eightRange = $("#eight-range");
 
-    var first_field = parseInt(document.getElementById('first-field').value);
-    var second_field = parseInt(document.getElementById('second-field').value);
-    var third_field = parseInt(document.getElementById('third-field').value);
-    var fourth_field = document.getElementById('fourth-field').value;
+      // Saving
+      let nineField = $("#nine-field");
+      let tenField = $("#ten-field");
 
-    document.getElementById('months').innerHTML = second_field + " " + "Months";
+      let nineRange = $("#nine-range");
+      let tenRange = $("#ten-range");
 
-    if(first_field > 0 && second_field > 0 && third_field > 0) {
+      // Wants
+      let elevenField = $("#eleven-field");
+      let twelveField = $("#twelve-field");
+      let thirteenField = $("#thirteen-field");
+      let fourteenField = $("#fourteen-field");
+
+      let elevenRange = $("#eleven-range");
+      let twelveRange = $("#twelve-range");
+      let thirteenRange = $("#thirteen-range");
+      let fourteenRange = $("#fourteen-range");
+
+      const ctx = document.getElementById('myChart').getContext('2d');
+
+      const myChart = new Chart(ctx, {
+           type: 'doughnut',
+            data: {
+                labels: ['Monthly Income', 'Needs', 'Saving & Investments', 'Wants'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [0, 0,0,0],
+                    backgroundColor: [
+                        '#4684F3',
+                        '#F23053',
+                        '#38C09C',
+                        '#FF7840'
+                    ],
+                    borderColor: [
+                        '#4684F3',
+                        '#F23053',
+                        '#38C09C',
+                        '#FF7840'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend:false,
+            }
+        });
+
       
-      var first_amount = first_field * third_field;
-      var first_amount = first_amount.toFixed();
-      var first_amount = parseInt(first_amount);
-      var first_amount = first_amount.toLocaleString();
-      document.getElementById('first-amount').innerHTML = "$" + "" + first_amount;
 
-      var first_amount = parseInt(first_amount);
+        // FOR FIRST FIELD 
 
-      if(fourth_field == "") {
-      var second_amount = first_field * third_field;
-      var second_amount = second_amount - 0;
-      var second_amount = second_amount / second_field;
-      var second_amount = second_amount.toFixed();
-      var second_amount = parseInt(second_amount);
-      var second_amount = second_amount.toLocaleString();
-      document.getElementById('second-amount').innerHTML = "$" + "" + second_amount;
-    }else {
-      var fourth_field = parseInt(document.getElementById('fourth-field').value);
-      var second_amount = first_field * third_field;
-            var second_amount = second_amount - fourth_field;
-            var second_amount = second_amount / second_field;
-      var second_amount = second_amount.toFixed();
-      var second_amount = parseInt(second_amount);
-      var second_amount = second_amount.toLocaleString();
-      document.getElementById('second-amount').innerHTML = "$" + "" + second_amount;
-    }
+        function montlyIncomeByField(){
 
-    }else {
-      // alert("Please Use All Fields");  
-    }
-  }
-  
+          var TotalEarningMontlyField = parseInt(salleryRange.val()) + parseInt(otherIncomeInput.val());
+
+           var totalNeeds = parseInt(thirdField.val()) + parseInt(fourField.val()) + parseInt(fiveField.val()) + parseInt(sixField.val()) + parseInt(sevenField.val()) + parseInt(eightField.val());
+
+          var savingANDINVESTMENT = parseInt(nineField.val()) + parseInt(tenField.val());
+
+          var wantsField = parseInt(elevenField.val()) + parseInt(twelveField.val()) + parseInt(thirteenField.val()) + parseInt(fourteenField.val());
+
+          var inputUpdateData = [TotalEarningMontlyField,totalNeeds,savingANDINVESTMENT,wantsField];
+          myChart.data.datasets[0].data = inputUpdateData;
+           myChart.update();
+        }
+
+        // FOR RANGE FIRST FIELD
+
+        function montlyIncomeByRange(){
+
+          var TotalEarningMontlyRange = parseInt(salleryRange.val()) + parseInt(otherIncome.val());
+
+           var totalNeeds = parseInt(thirdRange.val()) + parseInt(fourRange.val()) + parseInt(fiveRange.val()) + parseInt(sixRange.val()) + parseInt(sevenRange.val()) + parseInt(eightRange.val());
+
+          var savingANDINVESTMENT = parseInt(nineRange.val()) + parseInt(tenRange.val());
+
+          var wantsRange = parseInt(elevenRange.val()) + parseInt(twelveRange.val()) + parseInt(thirteenRange.val()) + parseInt(fourteenRange.val());
+
+           var updateDataaValue = [TotalEarningMontlyRange,totalNeeds,savingANDINVESTMENT,wantsRange];
+            myChart.data.datasets[0].data = updateDataaValue;
+            myChart.update();
+        }
+
+
+      // FOR RANGE SECOND FIELD
+
+        // function needsChartRange(){
+         
+        //    var updateDataaValue = [0,totalNeeds,0,0];
+        //     myChart.data.datasets[0].data = updateDataaValue;
+        //     myChart.update();
+        // }
+
+        // FOR SECOND FIELD 
+
+        // function needsChartField(){
+        //   var totalNeeds = parseInt(thirdField.val()) + parseInt(fourField.val()) + parseInt(fiveField.val()) + parseInt(sixField.val()) + parseInt(sevenField.val()) + parseInt(eightField.val());
+        //   var inputUpdateData = [0,totalNeeds,0,0];
+        //   myChart.data.datasets[0].data = inputUpdateData;
+        //    myChart.update();
+        // }
+
+
+  $(document).ready(function(){$("#flip").click(function(){$("#panel").slideToggle("slow"),$("#panel1").slideUp("slow"),$("#panel2").slideUp("slow"),$("#panel3").slideUp("slow")})}),$(document).ready(function(){$("#flip1").click(function(){$("#panel").slideUp("slow"),$("#panel1").slideToggle("slow"),$("#panel2").slideUp("slow"),$("#panel3").slideUp("slow")})}),$(document).ready(function(){$("#flip2").click(function(){$("#panel").slideUp("slow"),$("#panel1").slideUp("slow"),$("#panel2").slideToggle("slow"),$("#panel3").slideUp("slow")})}),$(document).ready(function(){$("#flip3").click(function(){$("#panel").slideUp("slow"),$("#panel1").slideUp("slow"),$("#panel2").slideUp("slow"),$("#panel3").slideToggle("slow")})});
+
+    var field_one=$("#first-field"),field_two=$("#second-field"),field_three=$("#third-field"),field_four=$("#four-field"),field_five=$("#five-field"),field_six=$("#six-field"),field_seven=$("#seven-field"),field_eight=$("#eight-field"),field_nine=$("#nine-field"),field_ten=$("#ten-field"),field_eleven=$("#eleven-field"),field_twelve=$("#twelve-field"),field_thirteen=$("#thirteen-field"),field_fourteen=$("#fourteen-field"),range_one=$("#first-range"),range_two=$("#second-range"),range_three=$("#third-range"),range_four=$("#four-range"),range_five=$("#five-range"),range_six=$("#six-range"),range_seven=$("#seven-range"),range_eight=$("#eight-range"),range_nine=$("#nine-range"),range_ten=$("#ten-range"),range_eleven=$("#eleven-range"),range_twelve=$("#twelve-range"),range_thirteen=$("#thirteen-range"),range_fourteen=$("#fourteen-range");
+
+    // Range Values
+
+    $(range_one).on("input", function() {
+        field_one.val(parseInt(range_one.val()));
+        montlyIncomeByRange();
+    });
+
+    $(range_two).on("input", function() {
+        field_two.val(parseInt(range_two.val()));
+        montlyIncomeByRange();
+
+    });
+
+    $(range_three).on("input", function() {
+        field_three.val(parseInt(range_three.val()));
+        montlyIncomeByRange();
+    });
+
+    $(range_four).on("input", function() {
+        field_four.val(parseInt(range_four.val()));
+        montlyIncomeByRange();
+    });
+
+    $(range_five).on("input", function() {
+        field_five.val(parseInt(range_five.val()));
+        montlyIncomeByRange();
+    });
+
+    $(range_six).on("input", function() {
+        field_six.val(parseInt(range_six.val()));
+        montlyIncomeByRange();
+    });
+    
+    $(range_seven).on("input", function() {
+        field_seven.val(parseInt(range_seven.val()));
+        montlyIncomeByRange();
+    });
+
+    $(range_eight).on("input", function() {
+        field_eight.val(parseInt(range_eight.val()));
+        montlyIncomeByRange();
+    });
+
+    $(range_nine).on("input", function() {
+        field_nine.val(parseInt(range_nine.val()));
+        montlyIncomeByRange();
+    });
+
+    $(range_ten).on("input", function() {
+        field_ten.val(parseInt(range_ten.val()));
+        montlyIncomeByRange();
+
+    });
+
+    $(range_eleven).on("input", function() {
+        field_eleven.val(parseInt(range_eleven.val()));
+        montlyIncomeByRange();
+
+    });
+
+    $(range_twelve).on("input", function() {
+        field_twelve.val(parseInt(range_twelve.val()));
+        montlyIncomeByRange();
+
+    });
+
+    $(range_thirteen).on("input", function() {
+        field_thirteen.val(parseInt(range_thirteen.val()));
+        montlyIncomeByRange();
+
+    });
+
+    $(range_fourteen).on("input", function() {
+        field_fourteen.val(parseInt(range_fourteen.val()));
+        montlyIncomeByRange();
+
+    });
+
+    // Field Values
+
+    $(field_one).on("input", function() {
+        $("#first-range").val(parseInt(field_one.val()))
+        montlyIncomeByField();
+     })
+     $(field_two).on("input", function() {
+        $("#second-range").val(parseInt(field_two.val()))
+        montlyIncomeByField();
+     })
+
+     $(field_three).on("input", function() {
+        $("#third-range").val(parseInt(field_three.val()));
+        montlyIncomeByField();
+
+     })
+
+     $(field_four).on("input", function() {
+        $("#four-range").val(parseInt(field_four.val()));
+        montlyIncomeByField();
+     })
+
+     $(field_five).on("input", function() {
+        $("#five-range").val(parseInt(field_five.val()));
+        montlyIncomeByField();
+     })
+
+     $(field_six).on("input", function() {
+        $("#six-range").val(parseInt(field_six.val()));
+        montlyIncomeByField();
+     })
+
+     $(field_seven).on("input", function() {
+        $("#seven-range").val(parseInt(field_seven.val()));
+        montlyIncomeByField();
+     })
+
+     $(field_eight).on("input", function() {
+        $("#eight-range").val(parseInt(field_eight.val()));
+        montlyIncomeByField();
+     })
+
+     $(field_nine).on("input", function() {
+        $("#nine-range").val(parseInt(field_nine.val()))
+        montlyIncomeByField();
+     })
+
+     $(field_ten).on("input", function() {
+        $("#ten-range").val(parseInt(field_ten.val()))
+        montlyIncomeByField();
+     })
+
+     $(field_eleven).on("input", function() {
+      $("#eleven-range").val(parseInt(field_eleven.val()))
+      montlyIncomeByField();
+     })
+
+     $(field_twelve).on("input", function() {
+      $("#twelve-range").val(parseInt(field_twelve.val()))
+      montlyIncomeByField();
+     })
+
+     $(field_thirteen).on("input", function() {
+      $("#thirteen-range").val(parseInt(field_thirteen.val()))
+      montlyIncomeByField();
+     })
+
+     $(field_fourteen).on("input", function() {
+      $("#fourteen-range").val(parseInt(field_fourteen.val()))
+      montlyIncomeByField();
+     });
+
+    // First Field Calc
+    function firstFieldmonthlyCalcByField() { 
+      var total_income = parseInt($("#first-field").val()) + parseInt($("#second-field").val()); 
+      $("#total-income").html("$" + total_income); 
+    } 
+
+      function firstFieldmonthlyCalcByRange() { var total_income = parseInt($("#first-range").val()) + parseInt($("#second-range").val()); 
+      $("#total-income").html("$" + total_income);
+
+     }
+    // First Field Calc End
+
+    // Second Field Calc
+    function secondFieldmonthlyCalcByField() { var total_needs = parseInt($("#third-field").val()) + parseInt($("#four-field").val()) + parseInt($("#five-field").val()) + parseInt($("#six-field").val()) + parseInt($("#seven-field").val()) + parseInt($("#eight-field").val()); $("#total-needs").html("$" + total_needs); } function secondFieldmonthlyCalcByRange() {
+      var total_needs = parseInt($("#third-range").val()) + parseInt($("#four-range").val()) + parseInt($("#five-range").val()) + parseInt($("#six-range").val()) + parseInt($("#seven-range").val()) + parseInt($("#eight-range").val()); $("#total-needs").html("$" + total_needs); }
+    // Second Field Calc End
+
+    // Third Field Calc
+    function thirdFieldmonthlyCalcByField() { var total_saving = parseInt($("#nine-field").val()) + parseInt($("#ten-field").val()); $("#total-saving").html("$" + total_saving); } function thirdFieldmonthlyCalcByRange() { var total_saving = parseInt($("#nine-range").val()) + parseInt($("#ten-range").val()); $("#total-saving").html("$" + total_saving); }
+    // Third Field Calc End
+
+    // Fourth Field Calc
+    function fourthFieldmonthlyCalcByField() { var total_wants = parseInt($("#eleven-field").val()) + parseInt($("#twelve-field").val()) + parseInt($("#thirteen-field").val()) + parseInt($("#fourteen-field").val()); $("#total-wants").html("$" + total_wants); } function fourthFieldmonthlyCalcByRange() { var total_wants = parseInt($("#eleven-range").val()) + parseInt($("#twelve-range").val()) + parseInt($("#thirteen-range").val()) + parseInt($("#fourteen-range").val()); $("#total-wants").html("$" + total_wants); }
+    // Fourth Field Calc End
+
+    // var totalincome = parseInt($("#first-field").val()) + parseInt($("#second-field").val());
+    // var totalneeds = 0;
+    // var sallery = parseInt($("#first-field").val());
+
+//     var config = {
+//   data: [0,4,56,6]
+// };
+
+    // function getFirstSallery() {
+    //   a = parseInt($("#first-field").val());
+    //   // console.log(a);
+    //   config.data[0]=a;
+    // // console.log(config.data[0]);
+
+    // }
+
+    // console.log(config.data[0]);
+
+    // getFirstSallery();
+
+
+
+    // var data1 = [1,1,0,0]
+    //     const ctx = document.getElementById('myChart').getContext('2d');
+    //     const myChart = new Chart(ctx, {
+    //         type: 'doughnut',
+    //         data: {
+    //             labels: ['Monthly Income', 'Needs', 'Saving & Investments', 'Wants'],
+    //             datasets: [{
+    //                 label: '# of Votes',
+    //                 data: config.data,
+    //                 backgroundColor: [
+    //                     '#4684F3',
+    //                     '#F23053',
+    //                     '#38C09C',
+    //                     '#FF7840'
+    //                 ],
+    //                 borderColor: [
+    //                     '#4684F3',
+    //                     '#F23053',
+    //                     '#38C09C',
+    //                     '#FF7840'
+    //                 ],
+    //                 borderWidth: 1
+    //             }]
+    //         },
+    //         options: {
+                
+    //         }
+    //     });
+
+        
+
+        </script>
+
+
+<script> 
+    
+
+
+
 </script>
+
+      
+
+   
+
+
+<style> 
+    .flip {
+      padding: 10px 20px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    .panel {
+        display: none;
+        padding: 20px 20px;
+        border:  1px solid #ddd;
+        margin-top: 10px;
+        border-radius: 10px;
+    }
+    .chart-bx {
+        width: 20% !important;
+        margin: auto !important;
+    }
+    </style> JS SCRIPTS
